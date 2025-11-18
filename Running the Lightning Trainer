@@ -1,0 +1,5 @@
+from lightning.pytorch import Trainer
+# Configure the Trainer with max epochs
+trainer = Trainer(max_epochs=3, devices=1)
+# Start training with the predefined model
+trainer.fit(model, train_dataloader, val_dataloader)
