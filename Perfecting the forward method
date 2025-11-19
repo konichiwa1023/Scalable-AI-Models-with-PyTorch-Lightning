@@ -1,0 +1,14 @@
+class ClassifierModel(pl.LightningModule):
+  
+    def __init__(self, input_dim, hidden_dim, output_dim):
+        super().__init__()
+        self.hidden = nn.Linear(input_dim, hidden_dim)
+        self.output = nn.Linear(hidden_dim, output_dim)
+        
+    # Define forward method
+    def forward(self, x):
+        # Complete the forward pass
+        x = self.hidden(x)
+        x = nn.ReLU(x)
+        x = self.output(x)
+        return x
