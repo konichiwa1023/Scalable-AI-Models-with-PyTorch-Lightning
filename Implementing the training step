@@ -1,0 +1,11 @@
+from torch.nn.functional import cross_entropy
+
+def training_step(self, batch, batch_idx):
+    x, y = batch
+    # Ensure that you compute predictions using the forward pass
+    y_hat = self(x)
+    # Calculate the cross entropy loss
+    loss = cross_entropy(y_hat, y)
+    # Log the loss
+    self.log("train_loss", loss)
+    return loss
