@@ -1,0 +1,12 @@
+# Import libraries 
+import lightning.pytorch as pl
+from torch.utils.data import random_split
+
+class SplitDataModule(pl.LightningDataModule):
+    def __init__(self):
+        super().__init__()
+        self.train_data = None
+        self.val_data = None
+    def setup(self, stage=None):
+        # Split the dataset into training (80%) and validation (20%)
+        self.train_data, self.val_data = random_split(dataset, [80, 20])
