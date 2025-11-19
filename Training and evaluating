@@ -1,0 +1,12 @@
+# Import the Trainer
+from lightning.pytorch import Trainer
+
+# Define ImageClassifier model & trainer and set epoch parameter
+model = ImageClassifier()
+trainer = Trainer(max_epochs=5)
+
+# Train the model
+trainer.fit(model, train_loader, val_loader)
+
+# Evaluate the model
+val_results = trainer.validate(model, val_loader)
