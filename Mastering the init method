@@ -1,0 +1,9 @@
+import lightning.pytorch as pl
+import torch.nn as nn
+
+# Create the class
+class ClassifierModel(pl.LightningModule):
+    # Create init method
+    def __init__(self, input_dim, output_dim):
+        super().__init__()
+        self.classifier = nn.Linear(input_dim, output_dim)
