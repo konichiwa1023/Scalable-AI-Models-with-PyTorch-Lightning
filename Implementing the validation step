@@ -1,0 +1,10 @@
+import torch.nn.functional as F
+
+def validation_step(self, batch, batch_idx):
+    x, y = batch
+    # Compute predictions using the model
+    preds = self(x)
+    # Calculate validation loss
+    loss = F.cross_entropy(preds, y)
+    # Log the validation loss
+    self.log('val_loss', loss)
