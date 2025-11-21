@@ -1,0 +1,15 @@
+# Import relevant metric
+from torchmetrics import Accuracy
+import lightning.pytorch as pl
+
+class ClassifierModel(pl.LightningModule):
+    def __init__(self):
+        super().__init__()
+        # Instantiate accuracy metric
+        self.accuracy = Accuracy()
+    def validation_step(self, batch, batch_idx):
+        x, y = batch
+        preds = self(x)
+        # Calculate accuracy and log it as val_acc
+        acc = self.accuracy(preds, y)
+        self.log('val_acc', acc)
