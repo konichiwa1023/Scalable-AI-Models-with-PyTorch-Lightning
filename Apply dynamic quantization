@@ -1,0 +1,7 @@
+# Import the necessary quantization module
+from torch.quantization import quantize_dynamic
+
+# Apply dynamic quantization targeting linear layers
+model_quantized = torch.quantization.quantize_dynamic(
+    model, {torch.nn.Linear}, dtype=torch.qint8
+)
