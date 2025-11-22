@@ -1,0 +1,9 @@
+# Measure inference time of the original model
+original_time = measure_time(model, test_loader)
+
+# Measure inference time of the quantized model
+quant_time = measure_time(model_quantized, test_loader)
+
+# Print results
+print(f"Original Model Time: {original_time:.2f}s")
+print(f"Quantized Model Time: {quant_time:.2f}s")
