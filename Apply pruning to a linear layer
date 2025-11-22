@@ -1,0 +1,8 @@
+# Import pruning module
+import torch.nn.utils.prune as prune
+# Before pruning
+print(model)
+# Apply L1 unstructured pruning to model[3]
+prune.l1_unstructured(model[3], name="weight", amount=0.3)
+# After pruning
+print(model)
