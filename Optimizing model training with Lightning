@@ -1,0 +1,14 @@
+# Import relevant checkpoints
+from lightning.pytorch.callbacks import ModelCheckpoint, EarlyStopping
+class EvaluatedImageClassifier(ImageClassifier):
+    def validation_step(self, batch, batch_idx):
+        x, y = batch
+        y_hat = self(x)
+        acc = (y_hat.argmax(dim=1) == y).float().mean()
+        self.log("val_acc", acc)
+
+model = EvaluatedImageClassifier()
+data_module = OsmanyaDataModule()
+# Train the model with ModelCheckpoint and EarlyStopping checkpoints
+trainer = Trainer(callbacks=[ModelCheckpoint(monitor="val_acc", save_top_k=1), EarlyStopping(monitor="val_acc", patience=3)])
+trainer.fit(model, datamodule=data_module)
