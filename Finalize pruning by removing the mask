@@ -1,0 +1,7 @@
+import torch.nn.utils.prune as prune
+# Before pruning
+print(model)
+# Finalize pruning by removing the pruning mask
+prune.remove(model[3], "weight")
+# Print model structure after pruning
+print(model)
