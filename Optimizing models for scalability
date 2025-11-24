@@ -1,0 +1,13 @@
+# Export model to TorchScript
+scripted_model = torch.jit.trace(model, torch.tensor(X_test[:1], dtype=torch.float32).unsqueeze(1))
+# Save model to TorchScript
+torch.jit.save(scripted_model, 'model.pt')
+
+# Loaded saved model
+loaded_model = torch.jit.load('model.pt')
+# Validate inference on test dataset
+test_loader = DataLoader(TensorDataset(torch.tensor(X_test, dtype=torch.float32).unsqueeze(1), y_test), batch_size=64)
+
+accuracy = evaluate_model(loaded_model, test_loader)
+
+print(f"Optimized model accuracy: {accuracy:.2%}")
